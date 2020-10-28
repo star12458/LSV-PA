@@ -130,6 +130,9 @@ int Lsv_CommandPrintSopunate(Abc_Frame_t* pAbc, int argc, char** argv)
     vector<char> table;
     table.resize(Abc_ObjFaninNum(pObj), '-');
 
+    if(table.empty())
+      continue;
+
     bool flip = false;
 
     char* sop = (char*)Abc_ObjData(pObj);
@@ -156,6 +159,7 @@ int Lsv_CommandPrintSopunate(Abc_Frame_t* pAbc, int argc, char** argv)
       ++v;
     }
 
+    
     if(flip)
       for(int i=0; i<table.size(); ++i)
       {
@@ -164,7 +168,7 @@ int Lsv_CommandPrintSopunate(Abc_Frame_t* pAbc, int argc, char** argv)
         else if(table[i] == '1')
           table[i] = '0';
       }
-
+    
 
     vector<Abc_Obj_t*> neg;
     vector<Abc_Obj_t*> pos;
